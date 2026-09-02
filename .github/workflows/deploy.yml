@@ -36,6 +36,17 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Copy project workflow screenshots into deployment artifact
+        run: |
+          mkdir -p dist/assets/projects
+          cp -R assets/projects/. dist/assets/projects/
+
+      - name: Verify project screenshots exist in artifact
+        run: |
+          test -f dist/assets/projects/real-estate-ai-lead-qualification.png
+          test -f dist/assets/projects/rx-assistant-expiry-management.png
+          test -f dist/assets/projects/customer-support-ticket-automation.png
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
